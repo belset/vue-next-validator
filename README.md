@@ -17,7 +17,7 @@ for example: the field in a form may be empty so that you don't need to validate
 ### 🚀 **`DEMO`**: click to open an _[interactive page](https://github.com/belset/vue-next-validator/demo-package)_, and _[source codes](https://github.com/belset/vue-next-validator/demo-package)_ for that
 
 #
-![](./working.gif)
+![](https://raw.githubusercontent.com/belset/vue-next-validator/master/working.gif)
 #
 
 ## ⚡ Usage
