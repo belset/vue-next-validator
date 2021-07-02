@@ -2,7 +2,9 @@
 
 Javascript library of _server-side_ and/or _client-side_ validation for _*Vue 3*_ applications implemented with help of the Composition API hooks.
 
-### 🔥 `One function does all work to validate your data!`
+### 🔥 Only one function does all work to validate your data!
+
+
 ```ts
 function validate(conditions, source, callback, options = { delay: 500 });
 ```
@@ -14,20 +16,20 @@ for example: the field in a form may be empty so that you don't need to validate
               it will called from vue-next-validator as *callback(value, fnValid, fnInvalid)*;
 * `options` - if delay = 0, validation will be called immediately.
 
-### 🚀 **`DEMO`**: click to open an _[interactive page](https://github.com/belset/vue-next-validator/demo-package)_, and _[source codes](https://github.com/belset/vue-next-validator/demo-package)_ for that
+
+### 🚀 Have a look at the DEMO - _[interactive page](https://github.com/belset/vue-next-validator/demo-package)_, source codes of the DEMO located in the _[demo-package](https://github.com/belset/vue-next-validator/tree/master/demo-package)_
 
 #
-![](https://raw.githubusercontent.com/belset/vue-next-validator/master/working.gif)
+[![demo](https://raw.githubusercontent.com/belset/vue-next-validator/master/working.gif)](https://raw.githubusercontent.com/belset/vue-next-validator/master/working.gif)
 #
+
 
 ## ⚡ Usage
 
-
-Refer to [functions list](#functions) for more details.
-
-
+Link to the list of the [pre-defined functions](#injected-functions) which are injected into the package. These functions may be used for `client-side validation` only!
 
 ### Vue template
+
 ```html
 <div>
   <input type="text" v-model="state.user"/>
@@ -38,10 +40,12 @@ Refer to [functions list](#functions) for more details.
 ```
 
 ### Javascript
+
 ```ts
 import { validate, isEmail } from 'vue-next-validator'
 
 export default {
+    
   setup() {
     const state = reactive({
       user: null,
@@ -76,7 +80,7 @@ export default {
 
 ## 📦 Install
 
-> 🎩 It works for Vue 3 **within a single package** by the power of [vue-demi](https://github.com/belset/vue-next-validator)!
+> 🎩 It works for Vue 3 **within a single package** 
 
 ```bash
 npm i vue-next-validator
@@ -97,14 +101,36 @@ These functions are added in the package, just import it and use together vithe 
 import { validate, isEmail } from 'vue-next-validator'
 ```
 
-### CDN
+You can write your `callback` function to do any custom validation. 
+If the `callback` function returns `true`, it will mean the validation is finished. 
+Otherwise, the `valid` or `invalid` function must be called inside of your `callback` to finish validation. 
+You can pass any data through `valid` or `invalid` to analyze it in the marckup or source codes.
+
+```ts
+....
+  myValidator: 
+    validate(
+            () => state && state.number, // pre-validation conditions
+            () => state.number,          // value that has to be validated
+            (value, valid, invalid) => 
+                (value.length > 10) ? valid('Correct!') : invalid('Too short!')
+   )
+....
+
+  // myValidator.data will contains 'Correct!' or 'Too short!'
+```
+
+## 🌍 CDN
 
 It is not implemented yet.
 
+&nbsp;
 
 ## 🧱 Contribute
 
 See the [**Contributing Guide**](https://github.com/belset/vue-next-validator/contributing)
+
+&nbsp;
 
 ## 📄 License
 

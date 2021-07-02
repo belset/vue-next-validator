@@ -98,7 +98,7 @@
               });
           }, { delay:1200, immediate:false }),
 
-        email: validate(() => state.enableValidation && state.formData?.email, () => state.formData.email, isEmail, { immediate:true }),
+        email: validate(() => state.enableValidation && state.formData?.email, () => state.formData.email, isEmail, { delay: 0 }),
 
         buttonOK: () =>
           state.enableValidation && validators.user.valid && validators.email.valid
