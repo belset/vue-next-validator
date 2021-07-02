@@ -33,9 +33,11 @@ Link to the list of the [pre-defined functions](#injected-functions) which are i
 ```html
 <div>
   <input type="text" v-model="state.user"/>
-  <span v-if="validation.user.valid">User is valid</span>
-  <span v-else-if="validation.user.invalid">User is invalid</span>
-  <span v-else-if="validation.user.validating">Validating...</span>
+  <div>  
+    <span v-if="validation.user.valid">User is valid</span>
+    <span v-else-if="validation.user.invalid">User is invalid</span>
+    <span v-else-if="validation.user.validating">Validating...</span>
+  </div>
 </div>
 ```
 
@@ -54,11 +56,12 @@ export default {
 
     const validation = {
       
+      // server-side validation
       user: validate(
-        () => state.user && state.user.length > 2, // conditions to start validation, or not
-        () => state.user, // 'state.user' is a value that has to be validated
-        (value, valid, invalid) => { // 'value'='state.user'; 'valid' and 'invalid' - callback functions to inform about validation result; additinal data can be passed; 
-          const data = awat fetch(`https://api.agify.io/?name=${encodeURIComponent(value)}`);
+        () => state.user.length > 2,  // is it time to start a validation or not?
+        () => state.user,             // 'state.user' is a value that has to be validated
+        (value, valid, invalid) => {  
+          const data = await fetchData(`https://api.server.com/n=?${value}`);
           if (data.count > 0)
             valid({ name: value, count: data.count });
           else
@@ -66,8 +69,10 @@ export default {
         }
       ),
 
+      // client-side validation
       email: validate(() => state.email, () => state.email, isEmail, { delay: 0 }),
 
+      // validation based on other validations
       isOkEnabled: () => validation.user.valid && validation.email.valid
     };
 
@@ -77,15 +82,6 @@ export default {
   }
 }
 ```
-
-## 📦 Install
-
-> 🎩 It works for Vue 3 **within a single package** 
-
-```bash
-npm i vue-next-validator
-```
-
 
 ### Injected functions
 ```ts
@@ -98,27 +94,42 @@ export const isEmail = (val) => /...$/.test(val);
 ```
 These functions are added in the package, just import it and use together vithe the _validation_ function 
 ```ts
-import { validate, isEmail } from 'vue-next-validator'
+import { validate, isEmail, isUrl, ... } from 'vue-next-validator'
 ```
 
-You can write your `callback` function to do any custom validation. 
-If the `callback` function returns `true`, it will mean the validation is finished. 
+You can also write your own `callback` function to do any custom validation. It's the best way, you will have no any restrictions, you can use all possibilities the JavaScript provides - call database or another API, open modal windows, etc.
+
+If the `callback` function returns `true`, it will mean the validation is finished. It is short format of you custom function.
 Otherwise, the `valid` or `invalid` function must be called inside of your `callback` to finish validation. 
-You can pass any data through `valid` or `invalid` to analyze it in the marckup or source codes.
+You can pass any data through `valid` or `invalid` to analyze it on the marckup level or source codes.
 
 ```ts
 ....
-  myValidator: 
-    validate(
-            () => state && state.number, // pre-validation conditions
-            () => state.number,          // value that has to be validated
+  my_longFormat_Validator: 
+      validate(
+            () => state && state.number,    // pre-validation conditions
+            () => state.number,             // value that has to be validated
             (value, valid, invalid) => 
                 (value.length > 10) ? valid('Correct!') : invalid('Too short!')
-   )
+      ),
+  my_shortFormat_Validator:
+      validate(
+            () => state && state.phone,    // pre-validation conditions
+            () => state.phone,             // value that has to be validated
+            (value) => (value == '2128506')
+      )
 ....
-
-  // myValidator.data will contains 'Correct!' or 'Too short!'
 ```
+
+
+## 📦 Install
+
+> 🎩 It works for Vue 3 **within a single package** 
+
+```bash
+npm i vue-next-validator
+```
+
 
 ## 🌍 CDN
 
