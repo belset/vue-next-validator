@@ -2,17 +2,17 @@
   "name": "vue-next-validator",
   "version": "0.9.0",
   "description": "Extremely simple and powerful server-side and client-side validator for Vue 3 (vue@next)",
-  "main": "lib/index.js",
-  "files": [ "./lib/**" ],
+  "directories": {
+    "lib": "./lib"
+  },
+  "files": [ "lib" ],
+  "main": "./lib/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/belset/vue-next-validator.git"
   },
   "keywords": [ "vue", "vue3", "vuejs", "vue@next", "validator", "validation", "server-side", "client-side" ],
-  "author": {
-    "name": "belset",
-    "url": "https://github.com/belset/"
-  },
+  "author": "belset",
   "license": "SEE LICENSE IN LICENSE",
   "bugs": {
     "url": "https://github.com/belset/vue-next-validator/issues"
