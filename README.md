@@ -17,7 +17,7 @@ for example: the field in a form may be empty so that you don't need to validate
 * `options` - if delay = 0, validation will be called immediately.
 
 
-### 🚀 Have a look at the DEMO - _[interactive page](https://github.com/belset/vue-next-validator/demo-package)_, source codes of the DEMO located in the _[demo-package](https://github.com/belset/vue-next-validator/tree/master/demo-package)_
+### 🚀 ***Have a look at the [INTERACTIVE DEMO](https://belset.github.io/vue-next-validator/demo-package/dist/)***, are also provided - _[click here](https://github.com/belset/vue-next-validator/tree/master/demo-package)_ 
 
 #
 [![demo](https://raw.githubusercontent.com/belset/vue-next-validator/master/working.gif)](https://raw.githubusercontent.com/belset/vue-next-validator/master/working.gif)

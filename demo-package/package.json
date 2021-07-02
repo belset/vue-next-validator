@@ -1,8 +1,9 @@
 {
   "version": "0.0.0",
+  "files": ["dist"],
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build --base=/vue-next-validator/demo-package/dist/",
     "serve": "vite preview"
   },
   "dependencies": {
