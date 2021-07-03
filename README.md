@@ -15,11 +15,9 @@ for example: the field in a form may be empty so that you don't need to validate
               it will called from vue-next-validator as *callback(value, fnValid, fnInvalid)*;
 * `options` - if delay = 0, validation will be called immediately.
 
-&nbsp;
+#
 ### 🚀 ***Have a look at the [INTERACTIVE DEMO](https://belset.github.io/vue-next-validator/demo-package/dist/)***, there are also _[source codes](https://github.com/belset/vue-next-validator/tree/master/demo-package)_ of the demo project
-
-&nbsp;
-###
+#
 [![demo](https://raw.githubusercontent.com/belset/vue-next-validator/master/working.gif)](https://raw.githubusercontent.com/belset/vue-next-validator/master/working.gif)
 
 &nbsp;
@@ -58,7 +56,7 @@ export default {
         () => state.user.length > 2,  // is it time to start a validation or not?
         () => state.user,             // 'state.user' is a value that has to be validated
         (value, valid, invalid) => {  
-          const data = await fetchData(`https://api.server.com/n=?${value}`);
+          const data = await fetchData(`https://api.server.com/?name=${value}`);
           if (data.count > 0)
             valid({ name: value, count: data.count });
           else
@@ -80,9 +78,9 @@ export default {
 }
 ```
 
-### 〰️ 💡 Customizing 
+### 🔸 Customizing 
 
-Normally you will write your own `callback` function to do any custom validation. It's the best way, you will have no any restrictions, you can use all possibilities the JavaScript provides - call database or another API, open modal windows, etc.
+Normally you will write your own `callback` function to do any custom validation. You can use all possibilities the JavaScript provides - database or another API requests, modal windows, etc.
 
 ```ts
 ....
@@ -97,14 +95,15 @@ Normally you will write your own `callback` function to do any custom validation
       validate(
             () => state && state.phone,    // pre-validation conditions
             () => state.phone,             // value that has to be validated
-            (value) => (value == '2128506')
+            (value) => (value === '2128506')
       )
 ```
-If the `callback` function returns `true`, it will mean the validation is finished. It is short format of you custom function.
-Otherwise, the `valid` or `invalid` function must be called inside of your `callback` to finish validation. 
-You can pass any data through `valid` or `invalid` to analyze it on the marckup level or source codes.
+If the `callback` function returns `true`, it will mean the validation has finished. This is a short format of your custom `callback` function.
 
-### 〰️ 💡 Pre-defined client-side functions
+Otherwise, the `valid` / `invalid` function must be called inside of your `callback` to finish the validation.<br>
+You can pass any data through `valid` or `invalid` to analyze it in the source codes or on the markup level.
+
+### 🔸 Pre-defined client-side functions
 
 ```ts
 export const isInt = (val) => val != "" && !isNaN(val) && Math.round(val) == val;
@@ -115,8 +114,7 @@ export const isUrl = (val) => /.....?/.test(val);
 export const isEmail = (val) => /.....$/.test(val);
 ```
 
-Several most of usable functions for ***client-side*** validation were added into the package.
-Just import it to use together with the _validate(....)_ function 
+These most commonly used functions for ***client-side*** validation ave been added into the package. Just import it to use together with the _validate(....)_ function 
 ```ts
 import { validate, isEmail, isUrl, ... } from 'vue-next-validator'
 ```
