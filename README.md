@@ -4,7 +4,6 @@ Javascript library of _server-side_ and/or _client-side_ validation for _*Vue 3*
 
 ### 🔥 Only one function does all work to validate your data!
 
-
 ```ts
 function validate(conditions, source, callback, options = { delay: 500 });
 ```
@@ -23,7 +22,7 @@ for example: the field in a form may be empty so that you don't need to validate
 [![demo](https://raw.githubusercontent.com/belset/vue-next-validator/master/working.gif)](https://raw.githubusercontent.com/belset/vue-next-validator/master/working.gif)
 #
 
-
+&nbsp;
 ## ⚡ Usage
 
 Link to the list of the [pre-defined functions](#injected-functions) which are injected into the package. These functions may be used for `client-side validation` only!
@@ -92,7 +91,7 @@ export const isDigit = (val) => /^\d*$/.test(val);
 export const isUrl = (val) => /...?/.test(val);
 export const isEmail = (val) => /...$/.test(val);
 ```
-These functions are added in the package, just import it and use together vithe the _validation_ function 
+These functions are added in the package, just import it and use together with the _validate(....)_ function 
 ```ts
 import { validate, isEmail, isUrl, ... } from 'vue-next-validator'
 ```
@@ -121,27 +120,29 @@ You can pass any data through `valid` or `invalid` to analyze it on the marckup 
 ....
 ```
 
-
+&nbsp;
 ## 📦 Install
-
-> 🎩 It works for Vue 3 **within a single package** 
 
 ```bash
 npm i vue-next-validator
 ```
 
-
+&nbsp;
 ## 🌍 CDN
 
 It is not implemented yet.
 
 &nbsp;
+## 🧱 Contributing
 
-## 🧱 Contribute
-
-See the [**Contributing Guide**](https://github.com/belset/vue-next-validator/contributing)
+When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change
 
 &nbsp;
-
 ## 📄 License
 
+MIT © [@belset/vue-next-validator](https://github.com/belset/vue-next-validator/blob/master/LICENSE)
+
+&nbsp;
+## 🙏 Thanks
+
+Thanks will be enough 🙏

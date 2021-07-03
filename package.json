@@ -13,7 +13,7 @@
   },
   "keywords": [ "vue", "vue3", "vuejs", "vue@next", "validator", "validation", "server-side", "client-side" ],
   "author": "belset",
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/belset/vue-next-validator/issues"
   },
