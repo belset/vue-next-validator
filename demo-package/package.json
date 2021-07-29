@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "vue": "^3.0.5",
-    "vue-next-validator": "^0.9.0"
+    "vue-next-validator": "*"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.2.3",
