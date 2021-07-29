@@ -136,7 +136,7 @@ You can use 'vue-next-validator' independently, just add a **\<script\>** tag wi
 The **\<script\>** tag has to be added after Vue, for example - 
 > ```js
 > <script src="http://unpkg.com/vue@3.0.5"></script>
-> <script src="http://unpkg.com/vue-next-validator/min/browser.min.js"></script>
+> <script src="https://unpkg.com/vue-next-validator@0.10.1/min/browser.min.js"></script>
 >
 > // also you have to import a few functions from the Vue library,
 > // in expample below they were just put together with 'createApp'

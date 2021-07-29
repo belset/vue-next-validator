@@ -1,6 +1,6 @@
 {
   "name": "vue-next-validator",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "description": "Extremely simple and powerful server-side and client-side validator for Vue 3 (vue@next)",
   "directories": {
     "lib": "./lib",
