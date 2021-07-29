@@ -5,7 +5,7 @@ Javascript library of _server-side_ and/or _client-side_ validation for _*Vue 3*
 ### 🔥 Only one function does all work to validate your data!
 
 ```ts
-function validate(conditions, source, callback, options = { delay: 500 });
+function validate(conditions, source, callback, options = { immediate: false, delay: 300 });
 ```
 * `conditions` - it allows to detect the moment when your data are ready to be validated;
 for example: the field in a form may be empty so that you don't need to validate it;
@@ -13,7 +13,7 @@ for example: the field in a form may be empty so that you don't need to validate
 * `source` - a getter function or directly a ref to data which should be validated;
 * `callback` - a user's function that will do a vlidation;
               it will called from vue-next-validator as *callback(value, fnValid, fnInvalid)*;
-* `options` - if delay = 0, validation will be called immediately.
+* `options` - if _'immediate'_ is true, the validation will be processed immediately; the _'delay'_ will postpone next validation; 'options' may be ignored on run;
 
 #
 ### 🚀 ***Have a look at the [INTERACTIVE DEMO](https://belset.github.io/vue-next-validator/demo-package/dist/)***, there are also _[source codes](https://github.com/belset/vue-next-validator/tree/master/demo-package)_ of the demo project
@@ -51,21 +51,23 @@ export default {
 
     const validation = {
       
-      // server-side validation
+      // SERVER-SIDE validation
       user: validate(
         () => state.user.length > 2,  // is it time to start a validation or not?
         () => state.user,             // 'state.user' is a value that has to be validated
         (value, valid, invalid) => {  
           const data = await fetchData(`https://api.server.com/?name=${value}`);
           if (data.count > 0)
-            valid({ name: value, count: data.count });
+            valid({ name: value, count: data.count }); // name, count may be used in template
           else
             invalid({ name: value });
-        }
+        }, 
+        { delay: 500 } // validation will start in 500 ms after last changes only!
       ),
 
-      // client-side validation
-      email: validate(() => state.email, () => state.email, isEmail, { delay: 0 }),
+      // CLIENT-SIDE validation; 
+      // no options passed, validation will start immediately
+      email: validate(() => state.email, () => state.email, isEmail), 
 
       // validation based on other validations
       isOkEnabled: () => validation.user.valid && validation.email.valid
@@ -129,7 +131,17 @@ npm i vue-next-validator
 &nbsp;
 ## 🌍 CDN
 
-It is not implemented yet.
+You can use 'vue-next-validator' independently, just add a **\<script\>** tag with proper link.
+
+The **\<script\>** tag has to be added after Vue, for example - 
+> ```js
+> <script src="http://unpkg.com/vue@3.0.5"></script>
+> <script src="http://unpkg.com/vue-next-validator/min/browser.min.js"></script>
+>
+> // also you have to import a few functions from the Vue library,
+> // in expample below they were just put together with 'createApp'
+> const { createApp, isRef, isReactive, reactive, watch, readonly } = Vue;
+> ```
 
 &nbsp;
 ## 🧱 Contributing

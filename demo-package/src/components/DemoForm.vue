@@ -72,7 +72,7 @@
 
 <script>
   import { reactive } from 'vue'
-  import { validate, isEmail } from 'vue-next-validator'
+  import { validate, isInt, isFloat, isCurrency, isDigit, isUrl, isEmail } from 'vue-next-validator'
 
   export default {
     setup() {
@@ -96,9 +96,12 @@
                 else
                   invalid({ name: value });
               });
-          }, { delay:1200, immediate:false }),
+          }, { delay: 700 }),
 
-        email: validate(() => state.enableValidation && state.formData?.email, () => state.formData.email, isEmail, { delay: 0 }),
+        email: validate(
+            () => state.enableValidation && state.formData?.email, 
+            () => state.formData.email, 
+            isEmail),
 
         buttonOK: () =>
           state.enableValidation && validators.user.valid && validators.email.valid
